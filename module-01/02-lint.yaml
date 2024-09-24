@@ -1,0 +1,10 @@
+input:
+  generate:
+    mapping: root = "hello world"
+    interval: 3s
+pipeline:
+  processors:
+    - bloblang |
+        root = content().uppercase()
+output:
+  stdout: {}

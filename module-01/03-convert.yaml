@@ -1,0 +1,12 @@
+input:
+  kafka:
+    addresses: [ TODO ]
+    topics: [ city ]
+    consumer_group: reader
+
+pipeline:
+  processors:
+  - mapping: content().uppercase().string()
+
+output:
+  stdout: {}

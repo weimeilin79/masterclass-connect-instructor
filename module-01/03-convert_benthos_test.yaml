@@ -1,0 +1,9 @@
+tests:
+  - name: example test
+    target_processors: '/pipeline/processors'
+    environment: {}
+    input_batch:
+      - content: 'Hello world'
+    output_batches:
+      -
+        - content_equals: HELLO WORLD
