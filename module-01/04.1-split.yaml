@@ -1,0 +1,28 @@
+input:
+  csv:
+    paths: [ ${FILE_PATH} ]
+    parse_header_row: true
+    delimiter: ','
+pipeline:
+  processors: 
+    - mapping: | 
+        root.flight = this.Flight
+        root.origin = this.Origin
+        root.airline = this.Airline
+        root.status = this.Status
+        root.aircraft = this.Aircraft
+    - branch:
+        request_map:
+          meta tempstore = this
+
+          root = this.aircraft
+        processors:
+          - jq:
+              query: split(" ")[0] 
+              raw: true
+        result_map:
+          root.manufacturer = this
+output:
+  kafka_franz:
+    seed_brokers: ["localhost:19092"] 
+    topic: "${TOPIC_NAME}" 
