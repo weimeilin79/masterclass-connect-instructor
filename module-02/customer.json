@@ -1,0 +1,50 @@
+{
+    "customer": {
+      "name": "christina",
+      "loyalty": "silver",
+      "miles": 12345,
+      "leg": 24,
+      "tickets": [
+        {
+          "confirmation_number": "ABC123",
+          "flight_number": "AA123",
+          "departure": "New York (JFK)",
+          "destination": "Los Angeles (LAX)",
+          "price": 150.50,
+          "date": "2024-09-01"
+        },
+        {
+          "confirmation_number": "DEF456",
+          "flight_number": "UA456",
+          "departure": "Chicago (ORD)",
+          "destination": "San Francisco (SFO)",
+          "price": 200.75,
+          "date": "2024-09-05"
+        },
+        {
+          "confirmation_number": "GHI789",
+          "flight_number": "DL789",
+          "departure": "Atlanta (ATL)",
+          "destination": "Miami (MIA)",
+          "price": 175.30,
+          "date": "2024-09-10"
+        },
+        {
+          "confirmation_number": "JKL012",
+          "flight_number": "SW123",
+          "departure": "Dallas (DFW)",
+          "destination": "Denver (DEN)",
+          "price": 210.40,
+          "date": "2024-09-15"
+        },
+        {
+          "confirmation_number": "MNO345",
+          "flight_number": "BA321",
+          "departure": "London (LHR)",
+          "destination": "New York (JFK)",
+          "price": 180.25,
+          "date": "2024-09-20"
+        }
+      ]
+    }
+  }
