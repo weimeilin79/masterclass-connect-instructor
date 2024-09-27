@@ -1,0 +1,14 @@
+input:
+  file:
+    paths: ["customer.json"] # No default (required)
+pipeline:
+  processors:
+    - bloblang: |
+        root.query_id = this.query.id.or(uuid_v4())
+        root.checked_time = now()
+
+
+output:
+  stdout: {}
+
+#{"customer": {"name":"christina", "loyalty":"sliver", "miles": 12345, "leg": 24}}

@@ -1,0 +1,12 @@
+input:
+  stdin: 
+    scanner:
+       lines: {}
+pipeline:
+  processors:
+    - mapping: |
+        root.customer_name = this.(cust | flyer | customer).name
+output:
+  stdout: {}
+
+  #{"cust" : {"flyer": {"":"Christina"}}}

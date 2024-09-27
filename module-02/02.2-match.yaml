@@ -1,0 +1,25 @@
+input:
+  stdin: 
+    scanner:
+       lines: {}
+pipeline:
+  processors:
+    - bloblang: |
+        root.customer = this.customer
+        root.customer.loyalty = match this.customer {
+          this.miles > 10000  => "platnium" ,
+          this.leg > 500 && this.miles > 600 => "platnium" ,
+          this.leg > 200  => "gold" ,
+          this.miles > 5000  => "gold" ,
+          _ => "sliver",
+        }
+
+output:
+  stdout: {}
+
+
+# {"customer": {"name":"christina", "miles": 12345, "leg": 24}}
+
+# {"customer": {"name":"james", "miles": 200, "leg": 600}}
+
+# {"customer": {"name":"dave", "miles": 50, "leg": 1}}

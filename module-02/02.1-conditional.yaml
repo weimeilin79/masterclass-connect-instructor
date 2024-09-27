@@ -1,0 +1,16 @@
+input:
+  stdin: 
+    scanner:
+       lines: {}
+pipeline:
+  processors:
+    - bloblang: |
+        if this.customer.loyalty == "platnium" {
+          root.upgrade = true} 
+        else {
+          root.upgrade = false }
+output:
+  stdout: {}
+
+
+# {"customer": {"name":"christina", "loyalty":"sliver", "miles": 12345, "leg": 24}}
