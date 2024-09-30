@@ -1,0 +1,16 @@
+input:
+  stdin: 
+    scanner:
+       lines: {}
+pipeline:
+  processors:
+    - branch:
+        request_map: 'root = {"flyer": content().string(),"baggages": [{ "id": "bag1"},{ "id": "bag2"}]}'
+        processors:
+          - http:
+              url: http://localhost:4195/baggages/track
+              verb: POST
+        result_map: 'root = this'
+
+output:
+  stdout: {}

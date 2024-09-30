@@ -1,0 +1,21 @@
+input:
+  http_server:
+    path: /baggages/track
+    allowed_verbs:
+      - POST
+    timeout: 10s
+pipeline:
+  processors:
+    - log:
+        level: INFO
+        message: "Received request: ${!content()}"
+    - mapping: |
+        map update_status {
+          root = this
+          root.status = "delivered"
+        }
+        root = this
+        
+        root.baggages = this.baggages.map_each(bag -> bag.apply("update_status"))
+output:
+  sync_response: {}
