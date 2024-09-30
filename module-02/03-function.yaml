@@ -1,12 +1,23 @@
 input:
   file:
     paths: ["customer.json"] # No default (required)
+    scanner:
+      to_the_end: {}
 pipeline:
   processors:
     - bloblang: |
-        root.query_id = this.query.id.or(uuid_v4())
-        root.checked_time = now()
+        map airport_code {
+          root = this
+          root.departure = this.departure.slice(this.departure.index_of("(")+1,this.departure.index_of(")"))
+          root.destination = this.destination.slice(this.destination.index_of("(")+1,this.destination.index_of(")"))
+        }
 
+        root = this
+        root.customer.tickets = this.customer.tickets.map_each(ticket -> ticket.apply("airport_code"))
+        root.customer.tickets = root.customer.tickets.merge(root.customer.partner_tickets)
+        root.customer.partner_tickets = deleted()
+        root.update_id = uuid_v4()
+        root.checked_time = now()
 
 output:
   stdout: {}

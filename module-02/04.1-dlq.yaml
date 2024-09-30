@@ -1,0 +1,13 @@
+input:
+  stdin: 
+    scanner:
+       lines: {}
+output:
+  fallback:
+    - reject_errored:
+        kafka_franz:
+          seed_brokers: [localhost:19092] 
+          topic: "DLQ" 
+    - http_client:
+        url: http://localhost/notexist
+        retries: 3

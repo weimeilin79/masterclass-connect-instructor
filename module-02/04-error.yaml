@@ -1,0 +1,25 @@
+input:
+  stdin: 
+    scanner:
+       lines: {}
+pipeline:
+  processors:
+    - retry:
+        backoff:
+          max_interval: 300ms
+          max_elapsed_time: 0s
+        processors: 
+          - http:
+              url: "http://localhost/notexist" # No default (required)
+              verb: GET
+              timeout: 500ms
+#          - catch:
+#            - log:
+#                message: "Processing failed due to: ${!error()}"
+#            - mapping: |
+#                root = deleted()
+
+        parallel: false
+        max_retries: 3
+output:
+  stdout: {}

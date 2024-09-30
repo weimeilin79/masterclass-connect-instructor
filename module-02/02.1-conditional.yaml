@@ -5,7 +5,7 @@ input:
 pipeline:
   processors:
     - bloblang: |
-        if this.customer.loyalty == "platnium" {
+        if this.customer.loyalty == "platinum" {
           root.upgrade = true} 
         else {
           root.upgrade = false }
